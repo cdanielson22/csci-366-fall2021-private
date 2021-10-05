@@ -5,17 +5,17 @@
 ;; CODE   =====================================
 loop    LDA current
         OUT
-        ADD one
+        ADD one 
         STA current
-        SUB until
+        SUB num
         BRZ exit
         BRA loop
-exit    LDA until
+exit    LDA num
         OUT
         HLT
 one     DAT 1
 current DAT 1
-until   DAT 10
+num     DAT 10
 ;; OUTPUT =====================================
 1
 2
