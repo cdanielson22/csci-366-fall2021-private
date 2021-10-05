@@ -3,5 +3,27 @@
 ;; Paste the code below, along with the output
 
 ;; CODE   =====================================
-
+loop    LDA current
+        OUT
+        ADD one
+        STA current
+        SUB until
+        BRZ exit
+        BRA loop
+exit    LDA until
+        OUT
+        HLT
+one     DAT 1
+current DAT 1
+until   DAT 10
 ;; OUTPUT =====================================
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
