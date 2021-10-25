@@ -99,6 +99,11 @@ int add_ship_horizontal(player_info *player, int x, int y, int length) {
     // implement this as part of Step 2
     // returns 1 if the ship can be added, -1 if not
     // hint: this can be defined recursively
+
+    unsigned long long int mask = xy_to_bitval(x, y);
+    player->ships;
+
+    // need to do some recursion and the base case will be when length is 0
 }
 
 int add_ship_vertical(player_info *player, int x, int y, int length) {
