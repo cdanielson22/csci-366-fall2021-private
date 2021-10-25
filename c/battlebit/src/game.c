@@ -53,7 +53,13 @@ unsigned long long int xy_to_bitval(int x, int y) {
     //
     // you will need to use bitwise operators and some math to produce the right
     // value.
-    return 1ull;
+
+    unsigned long long int mask = 1ull;
+    mask = mask << x;
+    return mask;
+
+
+    //return 1ull;
 }
 
 struct game * game_get_current() {
@@ -72,6 +78,21 @@ int game_load_board(struct game *game, int player, char * spec) {
     // slot and return 1
     //
     // if it is invalid, you should return -1
+
+    char * current = spec;
+    char ship = *current;
+    char col = *(current +1);
+    char row = *(current + 2);
+
+    int colInt = 0;
+    int rowInt = 0;
+    int length = 0;
+
+    player_info *playerInfo = &game->players[player];
+
+    if(add_ship_horizontal(playerInfo, colInt, rowInt, length) == -1){
+        return -1;
+    }
 }
 
 int add_ship_horizontal(player_info *player, int x, int y, int length) {
