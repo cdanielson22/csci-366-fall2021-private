@@ -3,5 +3,18 @@
 ;; Paste the code below, along with the output
 
 ;; CODE   =====================================
-
+loop    LDA cur
+        OUT
+        ADD one 
+        STA cur
+        SUB num
+        BRZ exit
+        BRA loop
+exit    LDA num
+        OUT
+        HLT
+one     DAT 1
+cur     DAT 1
+num     DAT 10
 ;; OUTPUT =====================================
+12345678910
