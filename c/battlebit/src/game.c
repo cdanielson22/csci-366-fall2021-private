@@ -74,7 +74,7 @@ struct game * game_get_current() {
 
 int game_load_board(struct game *game, int player, char * spec) {
     // Step 2 - implement this function.  Here you are taking a C
-    // string that represents a layout of ships, then testing
+    // string that  represents a layout of ships, then testing
     // to see if it is a valid layout (no off-the-board positions
     // and no overlapping ships)
     //
@@ -105,9 +105,18 @@ int add_ship_horizontal(player_info *player, int x, int y, int length) {
     // implement this as part of Step 2
     // returns 1 if the ship can be added, -1 if not
     // hint: this can be defined recursively
-
     unsigned long long int mask = xy_to_bitval(x, y);
-    player->ships;
+
+    if (length == 0) {
+        return 1;
+    }else if ((player->ships & mask)){
+        return -1;
+    } else {
+        player->ships = player->ships | mask;
+        return add_ship_horizontal(player, ++x, y, --length);
+    }
+
+
 
     // need to do some recursion and the base case will be when length is 0
 }
@@ -116,4 +125,17 @@ int add_ship_vertical(player_info *player, int x, int y, int length) {
     // implement this as part of Step 2
     // returns 1 if the ship can be added, -1 if not
     // hint: this can be defined recursively
+    unsigned long long int mask = xy_to_bitval(x, y);
+
+
+    if (length == 0){
+        return  1;
+    }
+    if ((player->ships & mask)){
+        return -1;
+    }
+
+    player->ships = player->ships | mask;
+    return add_ship_horizontal(player, x, y + 1, length - 1);
+
 }
