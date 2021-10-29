@@ -65,6 +65,7 @@ unsigned long long int xy_to_bitval(int x, int y) {
     mask <<= y*8;
     return mask;
 
+
 }
 
 struct game * game_get_current() {
