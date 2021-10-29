@@ -8,7 +8,7 @@ extern "C" {
 TEST(xy_to_bitval, good_values) {
     // row 1
     EXPECT_EQ(xy_to_bitval(0, 0), 1ull);
-    EXPECT_EQ(xy_to_bitval(1, 0), 2ull);
+    EXPECT_EQ(xy_to_bitval(1, 0), 2ull); // 000...00100
     EXPECT_EQ(xy_to_bitval(2, 0), 4ull);
     EXPECT_EQ(xy_to_bitval(3, 0), 8ull);
     EXPECT_EQ(xy_to_bitval(4, 0), 16ull);

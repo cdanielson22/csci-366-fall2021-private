@@ -53,13 +53,18 @@ unsigned long long int xy_to_bitval(int x, int y) {
     //
     // you will need to use bitwise operators and some math to produce the right
     // value.
+    if (x < 0 || x > 7) {
+        return 0;
+    }
+    if (y < 0 || y > 7){
+        return 0;
+    }
 
     unsigned long long int mask = 1ull;
-    mask = mask << x;
+    mask <<= x;
+    mask <<= y*8;
     return mask;
 
-
-    //return 1ull;
 }
 
 struct game * game_get_current() {
