@@ -99,6 +99,7 @@ int game_load_board(struct game *game, int player, char * spec) {
         col -= 48;
         row -= 48;
         // now i need to make my if statements to add shipps based on the letter that is given to me
+        // dont forget to remove return 7;
     }
     return 7;
     /*
