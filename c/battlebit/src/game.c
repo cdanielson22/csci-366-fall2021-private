@@ -84,7 +84,7 @@ int game_load_board(struct game *game, int player, char * spec) {
     // slot and return 1
     //
     // if it is invalid, you should return -1
-
+    /*
     char * current = spec;
     char ship = *current;
     char col = *(current +1);
@@ -98,7 +98,7 @@ int game_load_board(struct game *game, int player, char * spec) {
 
     if(add_ship_horizontal(playerInfo, colInt, rowInt, length) == -1){
         return -1;
-    }
+    }*/
 }
 
 int add_ship_horizontal(player_info *player, int x, int y, int length) {
