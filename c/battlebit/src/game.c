@@ -130,12 +130,11 @@ int add_ship_vertical(player_info *player, int x, int y, int length) {
 
     if (length == 0){
         return  1;
-    }
-    if ((player->ships & mask)){
+    } else if ((player->ships & mask) > 0){
         return -1;
+    }else {
+        player->ships = player->ships | mask;
+        return add_ship_horizontal(player, x, y - 1, length - 1);
     }
-
-    player->ships = player->ships | mask;
-    return add_ship_horizontal(player, x, y + 1, length - 1);
 
 }
