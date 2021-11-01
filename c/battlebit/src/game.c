@@ -85,10 +85,28 @@ int game_load_board(struct game *game, int player, char * spec) {
     //
     // if it is invalid, you should return -1
 
-    char * current = spec;
-    char ship = *current;
-    char col = *(current +1);
-    char row = *(current + 2);
+    if (spec == NULL){
+        return -1;
+    }
+
+    game->status = INITIALIZED;
+    // char * current = spec;
+    for (int i = 0; i < 15; i+=3){
+        char ship = spec[i];
+        char col = spec[i+1];
+        char row = spec[i+2];
+        //printf("%d %d %d \n", ship, col, row);
+        col -= 48;
+        row -= 48;
+        // now i need to make my if statements to add shipps based on the letter that is given to me
+    }
+    return 7;
+    /*
+    char * current = spec[0];
+    printf("%d", current);
+    //char ship = *current;
+    //char col = *(current +1);
+    //char row = *(current + 2);
 
     int colInt = 0;
     int rowInt = 0;
@@ -96,9 +114,10 @@ int game_load_board(struct game *game, int player, char * spec) {
 
     player_info *playerInfo = &game->players[player];
 
-    if(add_ship_horizontal(playerInfo, colInt, rowInt, length) == -1){
-        return -1;
-    }
+    //if(add_ship_horizontal(playerInfo, colInt, rowInt, length) == -1){
+     //   return -1;
+    //}
+    return 0;*/
 }
 
 int add_ship_horizontal(player_info *player, int x, int y, int length) {
@@ -107,10 +126,10 @@ int add_ship_horizontal(player_info *player, int x, int y, int length) {
     // hint: this can be defined recursively
     unsigned long long int mask = xy_to_bitval(x, y);
 
-    if (x < 0 || x > 7) {
+    if (x < 0 || x > 8) {
         return -1;
     }
-    if (y < 0 || y > 7){
+    if (y < 0 || y > 8){
         return -1;
     }
 
@@ -134,10 +153,10 @@ int add_ship_vertical(player_info *player, int x, int y, int length) {
     // hint: this can be defined recursively
     unsigned long long int mask = xy_to_bitval(x, y);
 
-    if (x < 0 || x > 7) {
+    if (x < 0 || x > 8) {
         return -1;
     }
-    if (y < 0 || y > 7){
+    if (y < 0 || y > 8){
         return -1;
     }
 
