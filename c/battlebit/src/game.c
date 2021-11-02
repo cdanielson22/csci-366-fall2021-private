@@ -97,26 +97,29 @@ int game_load_board(struct game *game, int player, char * spec) {
     int dest = 0;
     int sub = 0;
     int pat = 0;
-
+    //variable to track the amount of ships added
     int amount = 0;
 
 
 
     player_info *playerInfo = &game->players[player];
     // char * current = spec;
+    // for loop that goes through all the ships that are given by spec
     for (int i = 0; i < 15; i+=3){
+        // get each part of spec
+        // the type of ship
+        // the row and col that the ships added at as well
         char ship = spec[i];
         char row = spec[i+1];
         char col = spec[i+2];
-        printf("%d %d %d \n", ship, col, row);
+
         col -= 48;
         row -= 48;
         int colInt = (int)(col);
         int rowInt = (int)(row);
-        // now i need to make my if statements to add ships based on the letter that is given to me
-        // dont forget to remove return 7;
+
         if (ship == 99) { // carrier
-            if (add_ship_vertical(playerInfo, rowInt, colInt, 5) == -1){ return -1; }
+            if (add_ship_vertical(playerInfo, rowInt, colInt, 5) == -1){ return -1; } // two ifs to check that teh ships hasnt been added yet and is addable
             if (carr == 1) { return -1; }
             carr = 1;
             amount++;
@@ -189,7 +192,8 @@ int game_load_board(struct game *game, int player, char * spec) {
     if (amount != 5) {
         return -1;
     }
-
+    // if none of the ships are in bad spots then return that the game borad is valid and mask the ships into the mask
+    // and return 1
     game->players[player].ships |= playerInfo->ships;
     return 1;
     /*
