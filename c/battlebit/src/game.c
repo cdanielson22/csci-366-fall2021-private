@@ -90,18 +90,161 @@ int game_load_board(struct game *game, int player, char * spec) {
     }
 
     game->status = INITIALIZED;
+
+    // make some varaibles to keep track of what is added
+    int carr = 0;
+    int battle = 0;
+    int dest = 0;
+    int sub = 0;
+    int pat = 0;
+
+    int amount = 0;
+
+
+
+    player_info *playerInfo = &game->players[player];
     // char * current = spec;
     for (int i = 0; i < 15; i+=3){
         char ship = spec[i];
-        char col = spec[i+1];
-        char row = spec[i+2];
-        //printf("%d %d %d \n", ship, col, row);
+        char row = spec[i+1];
+        char col = spec[i+2];
+        printf("%d %d %d \n", ship, col, row);
         col -= 48;
         row -= 48;
-        // now i need to make my if statements to add shipps based on the letter that is given to me
+        int colInt = (int)(col);
+        int rowInt = (int)(row);
+        // now i need to make my if statements to add ships based on the letter that is given to me
         // dont forget to remove return 7;
+        if (ship == 99) { // carrier
+            if (add_ship_vertical(playerInfo, rowInt, colInt, 5) == -1){
+                return -1;
+            }
+            if (carr == 1) {
+                return -1;
+            }
+
+            carr = 1;
+            amount++;
+        }
+
+        if (ship == 67) { // carrier
+            if (add_ship_horizontal(playerInfo, rowInt, colInt, 5) == -1){
+                return -1;
+            }
+            if (carr == 1){
+                return -1;
+            }
+
+            carr = 1;
+            amount++;
+
+        }
+
+        if (ship == 98) { // battleship
+            if (add_ship_vertical(playerInfo, rowInt, colInt, 4) == -1){
+                return -1;
+            }
+            if (battle == 1) {
+                return -1;
+            }
+            battle = 1;
+            amount++;
+
+        }
+
+        if (ship == 66) { // battleship
+            if (add_ship_horizontal(playerInfo, rowInt, colInt, 4) == -1){
+                return -1;
+            }
+            if (battle == 1) {
+                return -1;
+            }
+            battle = 1;
+            amount++;
+
+        }
+
+        if (ship == 100) { // destoryer
+            if(add_ship_vertical(playerInfo, rowInt, colInt, 3) == -1) {
+                return -1;
+            }
+            if (dest == 1) {
+                return -1;
+            }
+            dest = 1;
+            amount++;
+        }
+
+        if (ship == 68) { // destoryer
+            if(add_ship_horizontal(playerInfo, rowInt, colInt, 3) == -1){
+                return -1;
+            }
+            if (dest == 1){
+                return -1;
+            }
+            dest = 1;
+            amount++;
+
+
+        }
+
+        if(ship == 115) { // sub
+            if(add_ship_vertical(playerInfo, rowInt, colInt, 3) == -1){
+                return -1;
+            }
+            if(sub == 1){
+                return -1;
+            }
+            sub = 1;
+            amount++;
+
+        }
+
+        if (ship == 83) {
+            if(add_ship_horizontal(playerInfo, rowInt, colInt, 3) == -1){
+                return -1;
+            }
+            if(sub == 1){
+                return -1;
+            }
+            sub = 1;
+            amount++;
+
+
+        }
+
+        if(ship == 112){
+            if(add_ship_vertical(playerInfo, rowInt, colInt, 2) == -1) {
+                return -1;
+            }
+            if(pat == 1) {
+                return -1;
+            }
+            pat = 1;
+            amount++;
+
+
+        }
+
+        if(ship == 80) {
+            if(add_ship_horizontal(playerInfo, rowInt, colInt, 2) == -1){
+                return -1;
+            }
+            if(pat == 1){
+                return -1;
+            }
+            pat = 1;
+            amount++;
+
+        }
     }
-    return 7;
+
+    if (amount != 5) {
+        return -1;
+    }
+
+    game->players[player].ships |= playerInfo->ships;
+    return 1;
     /*
     char * current = spec[0];
     printf("%d", current);
