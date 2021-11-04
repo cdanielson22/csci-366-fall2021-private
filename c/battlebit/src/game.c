@@ -119,7 +119,7 @@ int game_load_board(struct game *game, int player, char * spec) {
         int rowInt = (int)(row);
 
         if (ship == 99) { // carrier
-            if (add_ship_vertical(playerInfo, rowInt, colInt, 5) == -1){ return -1; } // two ifs to check that teh ships hasnt been added yet and is addable
+            if (add_ship_vertical(playerInfo, rowInt, colInt, 5) == -1){ return -1; } // two ifs to ch  eck that the ships hasn't been added yet and is addable
             if (carr == 1) { return -1; }
             carr = 1;
             amount++;
@@ -192,10 +192,11 @@ int game_load_board(struct game *game, int player, char * spec) {
     if (amount != 5) {
         return -1;
     }
-    // if none of the ships are in bad spots then return that the game borad is valid and mask the ships into the mask
+    // if none of the ships are in bad spots then return that the game board is valid and mask the ships into the mask
     // and return 1
-    game->players[player].ships |= playerInfo->ships;
+
     return 1;
+
     /*
     char * current = spec[0];
     printf("%d", current);
