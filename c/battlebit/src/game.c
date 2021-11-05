@@ -104,7 +104,8 @@ int game_load_board(struct game *game, int player, char * spec) {
 
     // getting the player info for the player that is passed in
     player_info *playerInfo = &game->players[player];
-    // char * current = spec;
+
+
     // for loop that goes through all the ships that are given by spec
     for (int i = 0; i < 15; i+=3){
         // parts of the spec are number that represent ascii characters.
@@ -113,12 +114,15 @@ int game_load_board(struct game *game, int player, char * spec) {
         char ship = spec[i];
         char row = spec[i+1];
         char col = spec[i+2];
+
         // i do some math to get the row and column to the right size. i minus 48 because thats were 0 is in the ascii table
         col -= 48;
         row -= 48;
+
         // once i have hte values to proper size in convert them to ints so they can be passed to the add ship functions later
         int colInt = (int)(col);
         int rowInt = (int)(row);
+
         // all these if statements are basically the same is just change vales
         // teh first if is to determine what ship is being added and what is orintation is
         if (ship == 99) { // carrier
