@@ -53,17 +53,19 @@ unsigned long long int xy_to_bitval(int x, int y) {
     //
     // you will need to use bitwise operators and some math to produce the right
     // value.
+
+    // if statments to make sure that the x and y values are valid
     if (x < 0 || x > 7) {
         return 0;
     }
     if (y < 0 || y > 7){
         return 0;
     }
-
+    // making a 64 bit integer and doing two bit shifts for the x and the y values
     unsigned long long int mask = 1ull;
     mask <<= x;
     mask <<= y*8;
-    return mask;
+    return mask; // i then return the integer that is a mask of teh x and y values
 
 
 }
@@ -84,14 +86,13 @@ int game_load_board(struct game *game, int player, char * spec) {
     // slot and return 1
     //
     // if it is invalid, you should return -1
-
+    // check to see if the spec is null and if it is return -1
     if (spec == NULL){
         return -1;
     }
 
-    game->status = INITIALIZED;
 
-    // make some varaibles to keep track of what is added
+    // make some varaibles to keep track of what is added i will change them to one when ships are added
     int carr = 0;
     int battle = 0;
     int dest = 0;
@@ -101,26 +102,31 @@ int game_load_board(struct game *game, int player, char * spec) {
     int amount = 0;
 
 
-
+    // getting the player info for the player that is passed in
     player_info *playerInfo = &game->players[player];
     // char * current = spec;
     // for loop that goes through all the ships that are given by spec
     for (int i = 0; i < 15; i+=3){
-        // get each part of spec
-        // the type of ship
-        // the row and col that the ships added at as well
+        // parts of the spec are number that represent ascii characters.
+        // the first on is a letter that represents the type of ship that it is and if its horizoltal or if its vertical.
+        // the next two postions are the row and then the column that the ships is located at
         char ship = spec[i];
         char row = spec[i+1];
         char col = spec[i+2];
-
+        // i do some math to get the row and column to the right size. i minus 48 because thats were 0 is in the ascii table
         col -= 48;
         row -= 48;
+        // once i have hte values to proper size in convert them to ints so they can be passed to the add ship functions later
         int colInt = (int)(col);
         int rowInt = (int)(row);
-
+        // all these if statements are basically the same is just change vales
+        // teh first if is to determine what ship is being added and what is orintation is
         if (ship == 99) { // carrier
-            if (add_ship_vertical(playerInfo, rowInt, colInt, 5) == -1){ return -1; } // two ifs to ch  eck that the ships hasn't been added yet and is addable
+            // this first if checks to see if the ship is addable and the ship should be added when i call the function for the if statement
+            if (add_ship_vertical(playerInfo, rowInt, colInt, 5) == -1){ return -1; }
+            // this if to so check if the ship type has already been added
             if (carr == 1) { return -1; }
+            // at the end if the checks are passed then i could the ship type up and the total amount up once
             carr = 1;
             amount++;
         }
@@ -167,33 +173,32 @@ int game_load_board(struct game *game, int player, char * spec) {
             amount++;
         }
 
-        if (ship == 83) {
+        if (ship == 83) { // sub
             if(add_ship_horizontal(playerInfo, rowInt, colInt, 3) == -1){ return -1; }
             if(sub == 1){ return -1; }
             sub = 1;
             amount++;
         }
 
-        if(ship == 112){
+        if(ship == 112){ // patorl
             if(add_ship_vertical(playerInfo, rowInt, colInt, 2) == -1) { return -1; }
             if(pat == 1) { return -1; }
             pat = 1;
             amount++;
         }
 
-        if(ship == 80) {
+        if(ship == 80) { // patrol
             if(add_ship_horizontal(playerInfo, rowInt, colInt, 2) == -1){ return -1; }
             if(pat == 1){ return -1; }
             pat = 1;
             amount++;
         }
     }
-
+    // at the end of those checks i check to make sure that there are 5 ships total
     if (amount != 5) {
         return -1;
     }
-    // if none of the ships are in bad spots then return that the game board is valid and mask the ships into the mask
-    // and return 1
+    // if all the checks are passed then I have a valid board and i return 1
 
     return 1;
 
@@ -220,25 +225,28 @@ int add_ship_horizontal(player_info *player, int x, int y, int length) {
     // implement this as part of Step 2
     // returns 1 if the ship can be added, -1 if not
     // hint: this can be defined recursively
-    unsigned long long int mask = xy_to_bitval(x, y);
 
+    // i first get the mask from the xy to bitval function
+    unsigned long long int mask = xy_to_bitval(x, y);
+    // i then check to make sure that i have been given valid numbers that arent off the board
     if (x < 0 || x > 8) {
         return -1;
     }
     if (y < 0 || y > 8){
         return -1;
     }
-
-    if (length == 0) {
+    // here is my recuresive function call
+    if (length == 0) { // if the length is 0 that means the ships was added and the runction returns 1 for success
         return 1;
     }else if ((player->ships & mask)){
+        // I check to make sure that there isnt an overlap with the position being added and the previous ships
+        // if there is an overlap then i return -1 for failure
         return -1;
     } else {
+        // if the check is passed then i added the xy postion into the ships and call the function again with the parameters incremented
         player->ships = player->ships | mask;
         return add_ship_horizontal(player, ++x, y, --length);
     }
-
-
 
     // need to do some recursion and the base case will be when length is 0
 }
@@ -247,6 +255,8 @@ int add_ship_vertical(player_info *player, int x, int y, int length) {
     // implement this as part of Step 2
     // returns 1 if the ship can be added, -1 if not
     // hint: this can be defined recursively
+
+    // the vertical is the same and horizontal but i increment on the y axis instead of the x axis
     unsigned long long int mask = xy_to_bitval(x, y);
 
     if (x < 0 || x > 8) {
