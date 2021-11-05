@@ -90,7 +90,8 @@ int game_load_board(struct game *game, int player, char * spec) {
     if (spec == NULL){
         return -1;
     }
-
+    // changing the status of the game to intilized when the gameboard gets loaded
+    GAME->status = INITIALIZED;
 
     // make some varaibles to keep track of what is added i will change them to one when ships are added
     int carr = 0;
