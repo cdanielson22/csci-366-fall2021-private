@@ -266,7 +266,6 @@ int add_ship_vertical(player_info *player, int x, int y, int length) {
         return -1;
     }
 
-
     if (length == 0){
         return  1;
     } else if ((player->ships & mask)){
