@@ -39,6 +39,17 @@ int game_fire(game *game, int player, int x, int y) {
     //
     //  If the opponents ships value is 0, they have no remaining ships, and you should set the game state to
     //  PLAYER_1_WINS or PLAYER_2_WINS depending on who won.
+    /*
+    player_info *playerFiring = &game->players[player];
+    unsigned long long int mask = xy_to_bitval(x, y);
+    playerFiring->shots;
+
+    player_info  *playerBeingFiringAt = &game->players[?];
+    playerBeingFiringAt->ships;
+     playerFiring->hits;
+
+     playerBeingFiringAt->ships;
+     */
 }
 
 unsigned long long int xy_to_bitval(int x, int y) {
@@ -90,8 +101,6 @@ int game_load_board(struct game *game, int player, char * spec) {
     if (spec == NULL){
         return -1;
     }
-    // changing the status of the game to intilized when the gameboard gets loaded
-    GAME->status = INITIALIZED;
 
     // make some varaibles to keep track of what is added i will change them to one when ships are added
     int carr = 0;
