@@ -105,6 +105,8 @@ void repl_print_ships(player_info *player_info, char_buff *buffer) {
     //  for the console.  You will need to use bit masking for each position
     //  to determine if a ship is at the position or not.  If it is present
     //  you need to print an X.  If not, you need to print a space character ' '
+
+
 }
 
 void repl_print_hits(struct player_info *player_info, struct char_buff *buffer) {

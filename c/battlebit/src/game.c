@@ -265,6 +265,7 @@ int game_load_board(struct game *game, int player, char * spec) {
     if (player == 1){
         GAME->status = PLAYER_0_TURN;
     }
+
     return 1;
 
     /*
