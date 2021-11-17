@@ -63,9 +63,22 @@ int game_fire(game *game, int player, int x, int y) {
     unsigned long long int mask = xy_to_bitval(x, y);
 
     playerFiring->shots |= mask;
+    if (player == 0){
+        GAME->status = PLAYER_1_TURN;
+    } else {
+        GAME->status = PLAYER_0_TURN;
+    }
 
-    if (mask | playerFiringAt->ships){
+    if (mask & playerFiringAt->ships){
         playerFiring->hits |= mask;
+        if (player == 0){
+            if (playerFiringAt->ships == playerFiring->hits){
+                GAME->status = PLAYER_0_WINS;
+            }
+        }
+        if (playerFiringAt->ships == playerFiring->hits){
+            GAME->status = PLAYER_1_WINS;
+        }
         return 1;
     } else {
         return 0;
@@ -78,10 +91,10 @@ int game_fire(game *game, int player, int x, int y) {
 
     player_info  *playerBeingFiringAt = &game->players[?];
     playerBeingFiringAt->ships;
-     playerFiring->hits;
+    playerFiring->hits;
 
-     playerBeingFiringAt->ships;
-     */
+    playerBeingFiringAt->ships;
+    */
 
 }
 
@@ -134,6 +147,8 @@ int game_load_board(struct game *game, int player, char * spec) {
     if (spec == NULL){
         return -1;
     }
+
+
 
     // make some varaibles to keep track of what is added i will change them to one when ships are added
     int carr = 0;
@@ -246,7 +261,10 @@ int game_load_board(struct game *game, int player, char * spec) {
         return -1;
     }
     // if all the checks are passed then I have a valid board and i return 1
-
+    GAME->status = CREATED;
+    if (player == 1){
+        GAME->status = PLAYER_0_TURN;
+    }
     return 1;
 
     /*
