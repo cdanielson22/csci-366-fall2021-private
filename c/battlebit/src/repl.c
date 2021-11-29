@@ -105,7 +105,34 @@ void repl_print_ships(player_info *player_info, char_buff *buffer) {
     //  for the console.  You will need to use bit masking for each position
     //  to determine if a ship is at the position or not.  If it is present
     //  you need to print an X.  If not, you need to print a space character ' '
+    // I need to make a nested for loop and do ands to get the postition of the ships with xy
+    //"  0 1 2 3 4 5 6 7 \n"
+    //"0 * * * * *       \n"
+    //"1               * \n"
+    //"2 *             * \n"
+    //"3 *   * * *       \n"
+    //"4 *               \n"
+    //"5 *               \n"
+    //"6                 \n"
+    //"7         * * *   \n"
 
+    cb_append(buffer, "  0 1 2 3 4 5 6 7 \n");
+    for (int i = 0; i < 8; i++){
+        // need another for loop
+        cb_append_int(buffer, i);
+        cb_append(buffer, " ");
+        for (int j = 0; j < 8; j++){
+            // now do the thing
+            unsigned long long int mask = xy_to_bitval(j, i);
+
+            if (player_info->ships & mask) {
+                cb_append(buffer, "* ");
+            }else {
+                cb_append(buffer, "  ");
+            }
+        }
+        cb_append(buffer, "\n");
+    }
 
 }
 
@@ -116,4 +143,27 @@ void repl_print_hits(struct player_info *player_info, struct char_buff *buffer) 
     // hits and shots values in the players game struct.  If a shot was fired at
     // a given spot and it was a hit, print 'H', if it was a miss, print 'M'.  If
     // no shot was taken at a position, print a space character ' '
+
+    cb_append(buffer, "  0 1 2 3 4 5 6 7 \n");
+    for (int i = 0; i < 8; i++){
+        // need another for loop
+        cb_append_int(buffer, i);
+        cb_append(buffer, " ");
+        for (int j = 0; j < 8; j++) {
+            unsigned long long int mask = xy_to_bitval(j, i);
+
+            if (player_info->shots & mask){
+                if(player_info->ships & mask){
+                    cb_append(buffer, "H ");
+                }else {
+                    cb_append(buffer, "M ");
+                }
+            } else {
+                cb_append(buffer, "  ");
+            }
+
+
+        }
+        cb_append(buffer, "\n");
+    }
 }
