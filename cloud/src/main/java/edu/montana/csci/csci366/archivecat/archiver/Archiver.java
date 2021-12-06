@@ -47,7 +47,7 @@ public class Archiver {
         //TODO - iterate over all the images, links and javascript files and
         // create download jobs for them
         List<DownloadJob> downloadJobs = new LinkedList<>();
-
+        // this gets the css links from the html
         Elements links = doc.select("link");
         for (Element link : links){
             AbstractDownloadJob download = AbstractDownloadJob.getJobFor(link, archive);
@@ -55,6 +55,25 @@ public class Archiver {
                 downloadJobs.add(download);
             }
         }
+
+        // get the images from the html
+        Elements imgs = doc.select("img");
+        for(Element img : imgs){
+            AbstractDownloadJob download = AbstractDownloadJob.getJobFor(img, archive);
+            if(download != null){
+                downloadJobs.add(download);
+            }
+        }
+
+        // get the javascript from the html
+        Elements scripts = doc.select("script");
+        for(Element script : scripts){
+            AbstractDownloadJob download = AbstractDownloadJob.getJobFor(script, archive);
+            if(download != null){
+                downloadJobs.add(download);
+            }
+        }
+
 
         // submit download jobs
         _jobExecutor.executeJobs(downloadJobs);
