@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.List;
+
 
 public class Archiver {
 
@@ -42,6 +44,7 @@ public class Archiver {
 
         //TODO - iterate over all the images, links and javascript files and
         // create download jobs for them
+        List<? extends DownloadJob> downloadJobs = new LinkedList<>();
 
         // submit download jobs
         _jobExecutor.executeJobs(downloadJobs);

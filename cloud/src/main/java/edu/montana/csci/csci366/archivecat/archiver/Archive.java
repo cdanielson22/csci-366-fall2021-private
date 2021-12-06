@@ -53,10 +53,21 @@ public class Archive {
 
     public String computeSHA1(String url) {
         // TODO - implement
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            md.update(url.getBytes());
+            return String.format("%040x", new BigInteger(1, md.digest()));
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public String saveFile(String fileName, byte[] body) throws IOException {
         // safe the content to the archive root, followed by the name of this archive folder, followed by the file name
+        String fullPath = ARCHIVE_ROOT + "/" + _sha + "/" + fileName;
+        Files.write(Path.of(fullPath), body);
+        return fullPath;
     }
 
     public String getRoot() {
