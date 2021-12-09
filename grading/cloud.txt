@@ -25,10 +25,10 @@
  T E S T S
 -------------------------------------------------------
 Running edu.montana.csci.csci366.archivecat.archiver.ArchiveTest
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.084 sec
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.066 sec
 Running edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest
-Tests run: 4, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 0.754 sec <<< FAILURE!
-edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest.testCSSDownload()  Time elapsed: 0.733 sec  <<< FAILURE!
+Tests run: 4, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 0.643 sec <<< FAILURE!
+edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest.testCSSDownload()  Time elapsed: 0.615 sec  <<< FAILURE!
 java.net.ConnectException: Connection refused
 	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:561)
 	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:119)
@@ -43,7 +43,7 @@ Caused by: java.net.ConnectException: Connection refused
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
 	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:912)
 
-edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest.testJSDownload()  Time elapsed: 0.005 sec  <<< FAILURE!
+edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest.testJSDownload()  Time elapsed: 0.006 sec  <<< FAILURE!
 java.net.ConnectException: Connection refused
 	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:561)
 	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:119)
@@ -73,7 +73,7 @@ Caused by: java.net.ConnectException: Connection refused
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
 	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:912)
 
-edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest.testJpegDownload()  Time elapsed: 0.005 sec  <<< FAILURE!
+edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest.testJpegDownload()  Time elapsed: 0.011 sec  <<< FAILURE!
 java.net.ConnectException: Connection refused
 	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:561)
 	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:119)
@@ -107,8 +107,8 @@ Tests run: 6, Failures: 4, Errors: 0, Skipped: 0
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  4.049 s
-[INFO] Finished at: 2021-12-08T09:12:51-07:00
+[INFO] Total time:  3.099 s
+[INFO] Finished at: 2021-12-09T09:05:43-07:00
 [INFO] ------------------------------------------------------------------------
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.12.4:test (default-test) on project ArchiveCat: There are test failures.
 [ERROR] 
