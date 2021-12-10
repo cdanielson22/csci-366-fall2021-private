@@ -32,7 +32,7 @@ public class Archiver {
     }
 
     public Archiver(String url) throws Exception {
-        this(url, new ThreadedJobRunner());
+        this(url, new InThreadJobRunner());
     }
 
     public void archive() throws IOException {
