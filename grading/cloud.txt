@@ -9,25 +9,110 @@
 [INFO] Copying 4 resources
 [INFO] 
 [INFO] --- maven-compiler-plugin:3.6.1:compile (default-compile) @ ArchiveCat ---
-[INFO] Changes detected - recompiling the module!
-[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
-[INFO] Compiling 13 source files to /home/carson/Projects/msu/csci-366-fall2021/grading/scripts/repos/christopher_danielson/cloud/target/classes
-[INFO] -------------------------------------------------------------
-[ERROR] COMPILATION ERROR : 
-[INFO] -------------------------------------------------------------
-[ERROR] /home/carson/Projects/msu/csci-366-fall2021/grading/scripts/repos/christopher_danielson/cloud/src/main/java/edu/montana/csci/csci366/web/WebServer.java:[31,27] variables in try-with-resources are not supported in -source 8
-  (use -source 9 or higher to enable variables in try-with-resources)
-[INFO] 1 error
-[INFO] -------------------------------------------------------------
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ ArchiveCat ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] skip non existing resourceDirectory /home/carson/Projects/msu/csci-366-fall2021/grading/scripts/repos/christopher_danielson/cloud/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.6.1:testCompile (default-testCompile) @ ArchiveCat ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ ArchiveCat ---
+[INFO] Surefire report directory: /home/carson/Projects/msu/csci-366-fall2021/grading/scripts/repos/christopher_danielson/cloud/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running edu.montana.csci.csci366.archivecat.archiver.ArchiveTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.066 sec
+Running edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest
+Tests run: 4, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 0.643 sec <<< FAILURE!
+edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest.testCSSDownload()  Time elapsed: 0.615 sec  <<< FAILURE!
+java.net.ConnectException: Connection refused
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:561)
+	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:119)
+	at edu.montana.csci.csci366.archivecat.archiver.jobs.CssDownloadJob.downloadResource(CssDownloadJob.java:27)
+	at edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest.testCSSDownload(JobsTest.java:54)
+Caused by: java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:777)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection$ConnectEvent.handle(PlainHttpConnection.java:128)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.handleEvent(HttpClientImpl.java:957)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.lambda$run$3(HttpClientImpl.java:912)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:912)
+
+edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest.testJSDownload()  Time elapsed: 0.006 sec  <<< FAILURE!
+java.net.ConnectException: Connection refused
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:561)
+	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:119)
+	at edu.montana.csci.csci366.archivecat.archiver.jobs.JavascriptDownloadJob.downloadResource(JavascriptDownloadJob.java:25)
+	at edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest.testJSDownload(JobsTest.java:68)
+Caused by: java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:777)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection$ConnectEvent.handle(PlainHttpConnection.java:128)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.handleEvent(HttpClientImpl.java:957)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.lambda$run$3(HttpClientImpl.java:912)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:912)
+
+edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest.testGifDownload()  Time elapsed: 0.009 sec  <<< FAILURE!
+java.net.ConnectException: Connection refused
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:561)
+	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:119)
+	at edu.montana.csci.csci366.archivecat.archiver.jobs.ImageDownloadJob.downloadResource(ImageDownloadJob.java:28)
+	at edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest.testGifDownload(JobsTest.java:82)
+Caused by: java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:777)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection$ConnectEvent.handle(PlainHttpConnection.java:128)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.handleEvent(HttpClientImpl.java:957)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.lambda$run$3(HttpClientImpl.java:912)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:912)
+
+edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest.testJpegDownload()  Time elapsed: 0.011 sec  <<< FAILURE!
+java.net.ConnectException: Connection refused
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:561)
+	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:119)
+	at edu.montana.csci.csci366.archivecat.archiver.jobs.ImageDownloadJob.downloadResource(ImageDownloadJob.java:28)
+	at edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest.testJpegDownload(JobsTest.java:96)
+Caused by: java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:777)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection$ConnectEvent.handle(PlainHttpConnection.java:128)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.handleEvent(HttpClientImpl.java:957)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.lambda$run$3(HttpClientImpl.java:912)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:912)
+
+Running edu.montana.csci.csci366.archivecat.archiver.runners.ThreadPoolJobRunnerTest
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running edu.montana.csci.csci366.archivecat.archiver.runners.InThreadJobRunnerTest
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running edu.montana.csci.csci366.archivecat.archiver.runners.ThreadedJobRunnerTest
+Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+
+Results :
+
+Failed tests:   edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest.testCSSDownload(): Connection refused
+  edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest.testJSDownload(): Connection refused
+  edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest.testGifDownload(): Connection refused
+  edu.montana.csci.csci366.archivecat.archiver.jobs.JobsTest.testJpegDownload(): Connection refused
+
+Tests run: 6, Failures: 4, Errors: 0, Skipped: 0
+
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  1.564 s
-[INFO] Finished at: 2021-12-06T09:48:04-07:00
+[INFO] Total time:  3.099 s
+[INFO] Finished at: 2021-12-09T09:05:43-07:00
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.6.1:compile (default-compile) on project ArchiveCat: Compilation failure
-[ERROR] /home/carson/Projects/msu/csci-366-fall2021/grading/scripts/repos/christopher_danielson/cloud/src/main/java/edu/montana/csci/csci366/web/WebServer.java:[31,27] variables in try-with-resources are not supported in -source 8
-[ERROR]   (use -source 9 or higher to enable variables in try-with-resources)
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.12.4:test (default-test) on project ArchiveCat: There are test failures.
+[ERROR] 
+[ERROR] Please refer to /home/carson/Projects/msu/csci-366-fall2021/grading/scripts/repos/christopher_danielson/cloud/target/surefire-reports for the individual test results.
 [ERROR] -> [Help 1]
 [ERROR] 
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
