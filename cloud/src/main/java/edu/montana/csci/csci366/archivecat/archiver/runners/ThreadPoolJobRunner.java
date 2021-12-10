@@ -11,20 +11,25 @@ public class ThreadPoolJobRunner implements DownloadJobRunner {
         // TODO implement - use a ThreadPoolExecutor with 10 threads to execute the jobs
         CountDownLatch latch = new CountDownLatch(downloadJobs.size());
         ExecutorService pool = Executors.newFixedThreadPool(10);
-        for (DownloadJob job : downloadJobs)
-            pool.submit(() -> {
+
+        for (DownloadJob job: downloadJobs)
+            pool.execute(() -> {
                 try {
                     job.run();
-                } catch (Exception e) {
+                } catch (Exception e){
                     throw new RuntimeException(e);
                 }
                 latch.countDown();
             });
-            try {
+            try{
                 latch.await();
-            } catch (InterruptedException e) {
+            } catch (Exception e){
                 throw new RuntimeException(e);
             }
+
+
+        pool.shutdown();
+
         }
     }
 
